@@ -22,8 +22,9 @@ def registerView(request):
             return redirect('login_url')
     else:
         form = UserCreationForm()
-  
-    return render(request,'registration/register.html',{'form':form})
+    context={
+        "form":form}
+    return render(request,'registration/register.html',context)
 
 def loginPage(request):
     context={}
