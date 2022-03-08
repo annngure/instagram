@@ -27,5 +27,6 @@ def registerView(request):
     return render(request,'registration/register.html',context)
 
 def loginPage(request):
+    # username =request.POST.get("username")
     context={}
     return render(request,'registration/login.html',context)

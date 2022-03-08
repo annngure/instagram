@@ -10,13 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+
+# import cloudinary
+# import cloudinary.uploader
+# import cloudinary.api
 import os
-from pathlib import Path
-import cloudinary 
-import cloudinary.uploader
-import cloudinary.api
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -42,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'cloudinary',
+    # 'cloudinary'
     
 ]
 
@@ -131,8 +133,8 @@ LOGIN_REDIRECT_URL = '/profile/'
 
 
 # adding config
-cloudinary.config( 
-  cloud_name = "dmihkyhjw", 
-  api_key = "585383889828843", 
-  api_secret = "j7PSnBq4onRs-cbF7_Yh2HEe7N4" 
-)
+# cloudinary.config( 
+#   cloud_name = "dmihkyhjw", 
+#   api_key = "585383889828843", 
+#   api_secret = "j7PSnBq4onRs-cbF7_Yh2HEe7N4" 
+# )
