@@ -9,11 +9,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
-
-# import cloudinary
-# import cloudinary.uploader
-# import cloudinary.api
 import os
 import sys
 
@@ -44,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    # 'cloudinary'
+
     
 ]
 
@@ -129,13 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 # LOGIN_REDIRECT_URL = 'profile/'
 # REGISTER_REDIRECT_URL = 'login/'
 
 
-# adding config
-# cloudinary.config( 
-#   cloud_name = "dmihkyhjw", 
-#   api_key = "585383889828843", 
-#   api_secret = "j7PSnBq4onRs-cbF7_Yh2HEe7N4" 
-# )
