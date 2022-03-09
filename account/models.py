@@ -11,7 +11,7 @@ class Image(models.Model):
     name = models.CharField(max_length=60)
     likes= models.IntegerField(default=0)
     caption = models.TextField()
-    comments = models.TextField(null=True)
+  
 
     def save_image(self):
         self.save()
@@ -52,21 +52,6 @@ class profile(models.Model):
     @classmethod
     def search_profile(cls,search_term):
         profile =cls.objects.filter(first_name_icontains =search_term)
-
-
-class Likes(models.Model):
-    user = models.ForeignKey(User,on_delete = models.CASCADE,related_name='userlikes')
-
-    def save_like(self):
-        self.save()
-
-    def unlike(self):
-        self.delete()
-
-    def __int__(self):
-        return self.name
-
-
 
 class Comment(models.Model):
     comment = models.TextField(blank= True,null=True)
