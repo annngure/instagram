@@ -1,34 +1,97 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.dispatch import receiver
-from django.db.models.signals import post_save
-
+# from tinymce.models import HTMLField
 
 
 # # Create your models here.
 
 class Image(models.Model):
-    user = models.ForeignKey(User,on_delete = models.CASCADE)
+    user = models.ForeignKey(User,on_delete = models.CASCADE,null=True)
     image = models.ImageField(upload_to='image')
     name = models.CharField(max_length=60)
+    likes= models.IntegerField(default=0)
     caption = models.TextField()
+    comments = models.TextField(null=True)
+
+    def save_image(self):
+        self.save()
+    
+    @classmethod
+    def display_image(cls):
+        images=cls.objects.all()
+        return images
+
+    @classmethod
+    def search_image(cls,search_term):
+        images = cls.object.filter(name_icontains = search_term).all()
+        return images
+
+    def delete_image(self):
+        self.delete()
+
+    def __str__(self):
+        return self.name
    
 
 class profile(models.Model):
-    profile_pic = models.ImageField(upload_to='profile/')
-    bio = models.TextField()
-    user = models.OneToOneField(User,on_delete = models.CASCADE)
+    first_name = models.CharField(max_length=30, null=True)
+    last_name = models.CharField(max_length =30, null=True)
+    profile_image = models.ImageField(upload_to='profile/')
+    bio = models.TextField(blank = True)
+    username = models.CharField(default='user',max_length=30)
 
-class Like(models.Model):
-    like = models.BooleanField()
-    image = models.ForeignKey(Image, on_delete = models.CASCADE,related_name='imagelikes')
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
+
+    def __str__(self):
+        return self.last_name
+
+    @classmethod
+    def search_profile(cls,search_term):
+        profile =cls.objects.filter(first_name_icontains =search_term)
+
+
+class Likes(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE,related_name='userlikes')
 
-class Comment(models.Model):
-    comment = models.TextField()
-    image = models.ForeignKey(Image,on_delete = models.CASCADE,related_name='comments')
-    user = models.ForeignKey(User,on_delete = models.CASCADE,related_name='comments')
+    def save_like(self):
+        self.save()
 
+    def unlike(self):
+        self.delete()
+
+    def __int__(self):
+        return self.name
+
+
+
+class Comment(models.Model):
+    comment = models.TextField(blank= True,null=True)
+    image = models.ForeignKey(Image,on_delete = models.CASCADE,null=True)
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
+
+    def delete_comment(self):
+        self.delete()
+
+    def save_comment(self):
+        self.save()
+
+    def __str__(self):
+        return self.comment
+
+        
 class Follows(models.Model):
-    follower = models.ForeignKey(profile, related_name='following',on_delete = models.CASCADE)
-    followee = models.ForeignKey(profile, related_name='followers',on_delete = models.CASCADE)
+    user = models.ForeignKey(User,on_delete = models.CASCADE,related_name='follow',null=True)
+    follower = models.ForeignKey(profile,on_delete = models.CASCADE, null = True)
+
+    def save_follower(self):
+        self.save
+
+    def delete_follower(self):
+        self.save
+
+    def __int__(self):
+        return self.name
