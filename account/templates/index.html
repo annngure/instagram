@@ -11,24 +11,22 @@
     <nav class="navbar" style="background-color: rgb(187, 209, 202);">       
         <div class="container-fliud">
             <div class="navbar-header" style="text-align: center;">
-                {% if user.is_authenticated%}
-            <a class="navbar-brand" href="{% url 'logout' %}" style="color: black;">LOGOUT</a>
-                {% else %}
-            <a class="navbar-brand" href="{% url 'login' %}" style="color: black;">LOGIN</a>
-            <a class="navbar-brand" href="{% url 'register' %}" style="color: black;">SIGNUP</a>
-                {% endif %}
-            <a class="navbar-brand" href="/admin" style="color: black;">ADMIN</a> 
-                
-                
-                            
+                <a class="navbar-brand" href="{% url 'logout' %}" style="color: black;">LOGOUT</a>
+                <a class="navbar-brand" href="{% url 'login' %}" style="color: black;">LOGIN</a>
+                <a class="navbar-brand" href="{% url 'register' %}" style="color: black;">SIGNUP</a> 
+                <a class="navbar-brand" href="/admin" style="color: black;">ADMIN</a> 
              </div>
-     
-
         </div>
     </nav>
+
     <p>Welcome.</p>
     
-   
+{% if user.is_authenticated %}
+     Hi {{ user.username }}!
+{% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a>
+{% endif %}
  
 </body>
 
