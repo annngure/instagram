@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from models import *
+from .models import *
 
 #Create the forms
 
@@ -23,21 +23,20 @@ class NewUserForm(UserCreationForm):
 class UpdateProfile(forms.ModelForm):
     class Meta:
         model = profile
-        fields = ['profile_pic','bio']
+        fields = ['profile_image','bio']
 
 
 class UpdateUser(forms.ModelForm):
     email = forms.EmailField()
     
     class Meta:
-        model = user
+        model = User
         fields = ['username','email']
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        model = comment
-		
-		exclude = ['user','pic']
+        model = Comment
+        exclude = ['user','image']
 
 
 

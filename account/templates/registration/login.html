@@ -10,7 +10,9 @@
     <nav class="navbar" style="background-color: rgb(187, 209, 202);">       
         <div class="container-fliud">
             <div class="navbar-header" style="text-align: center;">
-                <a class="navbar-brand" href="{% url 'index' %}" style="color: black;">HOME</a>                
+                <a class="navbar-brand" href="{% url 'index' %}" style="color: black;">HOME</a> 
+                <a class="navbar-brand" href="{% url 'profile' %}" style="color: black;">Profile</a>   
+                <a class="navbar-brand" href="{% url 'logout' %}" style="color: black;">LOGOUT</a>                  
              </div>
         </div>
     </nav>
@@ -43,7 +45,14 @@
                         <div class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" style="background-color: rgb(187, 209, 202);">Login.</button>
                         </div>
-      
+                        
+                        <!-- <div class="form-group">
+                          <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                        </div> -->
+            
+                        <input type="hidden" name="next" value="{{next}}">
+            
+
                         <p class="text-center text-muted mt-5 mb-0">Create a new account? <a href="/register" class="fw-bold text-body"><u>SignUp.</u></a></p>
       
                     </form>

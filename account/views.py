@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import NewUserForm
+from .forms import *
 from django.contrib import messages
 from .models import *
 
@@ -15,14 +15,9 @@ def index(request):
     context={}
     return render(request,'index.html',context)
 
-@login_required(login ='/registration/login/')
+@login_required()
 def profileView(request):
-    current_user = request.user
-    profile = profile.objects.all()
-    context={
-        "current_user":current_user
-        "profile":profile
-    }
+    context={}
     return render(request, 'profile.html',context)
 
 def registerView(request):
@@ -50,9 +45,8 @@ def loginPage(request):
             if user is not None:
                 login(request,user)
                 messages.info(request,"You are now logged as {username}.")
-                return redirect("profile")
-            else:
-                messages.error(request,"Invalid username or password")
+                return redirect('profile')
+            
     else:
         messages.error(request,"Invalid username or password.")
     form = AuthenticationForm()
