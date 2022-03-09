@@ -4,3 +4,4 @@ from django.contrib import admin
 admin.site.register(Image)
 admin.site.register(profile)
 admin.site.register(Comment)
+admin.site.register(Likes)
