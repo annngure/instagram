@@ -20,13 +20,13 @@ class NewUserForm(UserCreationForm):
         return user
 
 
-class UpdateProfile(forms.ModelForm):
+class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = profile
-        fields = ['profile_image','bio']
+        exclude = ['profile_image']
 
 
-class UpdateUser(forms.ModelForm):
+class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField()
     
     class Meta:

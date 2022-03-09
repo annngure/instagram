@@ -1,2 +1,30 @@
 {% extends 'base.html'%}
 {%block content%}
+
+<body>
+    <div class="well">
+        <div class="row">
+                <h5 class="text-center">NEW PROFILE.</h5>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %} 
+                    <input type="submit" class="btn btn-primary btn-sm" value="Submit">
+                    <input type="hidden" name="next" value="{{next}}">
+                </form>
+                <p><a  href="{% url 'profile' %}" >Previous</a></p>
+
+            </div>
+       
+        </div>
+        
+            <!-- empty div -->
+        <div class="col-md-4"></div>
+    </div>
+</body>
+
+
+
+
+{% endblock %}

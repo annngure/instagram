@@ -20,6 +20,35 @@ def profileView(request):
     context={}
     return render(request, 'profile.html',context)
 
+@login_required()
+def update_profile(request):
+    context={}
+    if request.method =="POST":
+        form = UpdateProfileForm(request.POST)
+        if form.is_valid():
+            request_profile.profile_image = form.cleaned_data['profile_image']
+            request_profile.bio = form.cleaned_data['bio']
+            request_profile.username = form.cleaned_data['username']
+            request_profile.save_profile()
+            return redirect('profile')
+    else:
+        form =UpdateProfileForm()
+    if request.method =='POST':
+        form = UpdateProfileForm(request.POST)
+        if form.is_valid():
+            new_profile = profile(profile_image = ['profile_image'],bio = form.cleaned_data['bio'],username = form.cleaned_data['username'])
+            new_profile.save_profile()
+            return redirect('profile')
+    else:
+        form = UpdateProfileForm()
+    context={
+        "form":form
+    }
+
+    return render(request, 'update-profile.html',context)
+
+
+
 def registerView(request):
     if request.method=="POST":
         form = NewUserForm(request.POST)
@@ -54,3 +83,4 @@ def loginPage(request):
         "form":form
     }
     return render(request,'registration/login.html',context)
+
