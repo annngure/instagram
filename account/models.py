@@ -14,7 +14,21 @@ class Image(models.Model):
     caption = models.TextField()
    
 
-# class profile(models.Model):
-#     name = models.CharField(max_lenght =60)
-#     bio = models.TextField()
+class profile(models.Model):
+    profile_pic = models.ImageField(upload_to='profile/')
+    bio = models.TextField()
+    user = models.OneToOneField(User,on_delete = models.CASCADE)
 
+class Like(models.Model):
+    like = models.BooleanField()
+    image = models.ForeignKey(Image, on_delete = models.CASCADE,related_name='imagelikes')
+    user = models.ForeignKey(User,on_delete = models.CASCADE,related_name='userlikes')
+
+class Comment(models.Model):
+    comment = models.TextField()
+    image = models.ForeignKey(Image,on_delete = models.CASCADE,related_name='comments')
+    user = models.ForeignKey(User,on_delete = models.CASCADE,related_name='comments')
+
+class Follows(models.Model):
+    follower = models.ForeignKey(profile, related_name='following',on_delete = models.CASCADE)
+    followee = models.ForeignKey(profile, related_name='followers',on_delete = models.CASCADE)
