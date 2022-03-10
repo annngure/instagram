@@ -22,25 +22,22 @@ def profileView(request):
 
 @login_required()
 def update_profile(request):
-    context={}
     if request.method =="POST":
-        form = UpdateProfileForm(request.POST)
+        form = UpdateProfile(request.POST ,request.FILES)
         if form.is_valid():
-            request_profile.profile_image = form.cleaned_data['profile_image']
-            request_profile.bio = form.cleaned_data['bio']
-            request_profile.username = form.cleaned_data['username']
             request_profile.save_profile()
+            messages.success(request,'Your profile is added sucessfully')
             return redirect('profile')
     else:
-        form =UpdateProfileForm()
+        form =UpdateProfile()
     if request.method =='POST':
-        form = UpdateProfileForm(request.POST)
+        form = UpdateProfile(request.POST,request.FILES)
         if form.is_valid():
-            new_profile = profile(profile_image = ['profile_image'],bio = form.cleaned_data['bio'],username = form.cleaned_data['username'])
             new_profile.save_profile()
+            messages.success(request,'Your profile is added sucessfully')
             return redirect('profile')
     else:
-        form = UpdateProfileForm()
+        form = UpdateProfile()
     context={
         "form":form
     }

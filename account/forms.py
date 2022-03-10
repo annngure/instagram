@@ -20,10 +20,11 @@ class NewUserForm(UserCreationForm):
         return user
 
 
-class UpdateProfileForm(forms.ModelForm):
+class UpdateProfile(forms.ModelForm):
+    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
     class Meta:
         model = profile
-        exclude = ['profile_image']
+        fields = ['first_name','last_name','profile_image','bio','username']
 
 
 class UpdateUserForm(forms.ModelForm):
