@@ -27,7 +27,17 @@
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">Log In</a>
 {% endif %}
- 
-</body>
+
+    {% for comment in comment %}
+    <div class="row">
+        <div class="col-md-1">
+            <p style=" font-weight: bold; "><a style="color: black" href="/"> {{comment.user}}</p>
+        </div>
+        <div class="col-md-4" style="margin-left: -25px">
+            <p>{{comment.comment}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %} 

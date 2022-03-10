@@ -37,7 +37,7 @@ class UpdateUserForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ['user','image']
+        fields = ['comment,''image' ,'user']
 
 
 

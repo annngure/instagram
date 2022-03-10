@@ -44,7 +44,19 @@ def update_profile(request):
 
     return render(request, 'update-profile.html',context)
 
+def comment(request):
+    if request.method=='POST':
+        form =CommentForm(request.POST)
 
+        if form.is_valid():
+            comment.save()
+            return redirect('index')
+    else:
+        form =CommentForm()
+        context={
+            "form":form
+        }
+    return render(request,'comment.html',context)
 
 def registerView(request):
     if request.method=="POST":
