@@ -73,28 +73,29 @@
     <br>
     <div class="container">
         <div class="row">
+            {% for image in image%}
             <div class="col-md-12">
-                <img src="{{user.profile.profile_image.url}}" alt="{{user.profile_pic.url}}" width="200" height="200">
+                <img src="{{profile.profile_image.url}}}" alt="{{profile.profile_image.url}}" class= "img-fluid" width="200" height="200">
             </div>
     
             <div class="col-md-8" > 
                 
-                <div class="card" style="float:right">
+                <!-- <div class="card" style="float:right">
                     <div class="card-body">
                         <h4>username:{{user.username}}</h4>
                         <h4>followers:10</h4>
                         <h4>likes:2</h4> 
-                        <div>
-                            {%include 'comments.html'%}
-                        </div>
 
                     </div>
-                    
+                    <div class="card-body">
+                        {%include 'comments.html'%}
+                    </div> -->
+
                 </div>
                 
             
             </div>
-        
+            {%endfor%}
         </div>
 </body>
 

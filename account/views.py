@@ -19,7 +19,10 @@ def index(request):
 
 @login_required()
 def profileView(request):
-    context={}
+    profile=Profile.objects.all()
+    context={
+        "profile":profile
+    }
     return render(request, 'profile.html',context)
 
 @login_required()

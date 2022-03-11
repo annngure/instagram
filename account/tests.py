@@ -2,14 +2,8 @@ from django.test import TestCase
 from . models import *
 # Create your tests here.
 
-# class profileTestClass(TestCase):
-#     #set Up method
-#     def setUp(self):
-#         self.ann=profile(first_name= 'Joses',last_name='Mwita')
-#         self.ann.save_profile()
 
-
-class TestImages(TestCase):
+class ImagesTestClass(TestCase):
   '''
   Class where we write our image models tests
   '''
@@ -17,10 +11,10 @@ class TestImages(TestCase):
     '''
     function that runs before others
     '''
-    self.test_user = User(username = 'denis')
+    self.test_user = User(username = 'women')
     self.test_user.save()
-    self.image = Image(image = 'denis.jpeg',name = 'denis',caption = 'denis',user = self.test_user)
-    self.comments = Comment(comment = 'awesome',image = self.image,user = self.test_user)
+    self.image = Image(image = 'women.jpeg',name = 'women',caption = 'women',user = self.test_user)
+    self.comments = Comment(comment = 'confidence',image = self.image,user = self.test_user)
 
   def test_instance(self):
     self.assertTrue(isinstance(self.image,Image))
@@ -33,7 +27,7 @@ class TestImages(TestCase):
 
 
   def test_delete_image(self):
-    self.image2 = Image(image = 'mugendi.jpeg',name = 'mugendi',caption = 'mugendi',user = self.test_user)
+    self.image2 = Image(image = 'celeb1.jpeg',name = 'celebrity',caption = 'trend',user = self.test_user)
     self.image2.save_image()
     self.image.save_image()
     self.image.delete_post()
@@ -62,21 +56,10 @@ class TestImages(TestCase):
 
 
 
-class TTestComments(TestCase):
-  '''
-  class that will test the profile model
-  '''
-  def setUp(self):
-    self.test_user = User(username = 'denis')
-    self.test_user.save()
-    self.image = Image(image = 'denis.jpeg',name = 'denis',caption = 'denis',user = self.test_user)
-    self.comments = Comment(comment = 'awesome',image = self.image,user = self.test_user)
+class CommentTestClass(TestCase):
 
-
-# class CommentTestClass(TestCase):
-
-#     def setUp(self):
+    def setUp(self):
         
-#         self.new_comment = Comment(comment= "comment")
-#         self.new_comment.save()
+        self.new_comment = Comment(comment= "comment")
+        self.new_comment.save()
 

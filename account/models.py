@@ -1,13 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
+# from cloudinary.models import CloudinaryField
 
 
 # # Create your models here.
 
 class Image(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE,null=True)
-    image = CloudinaryField('image')
+    image = models.ImageField(upload_to='image')
     name = models.CharField(max_length=60)
     likes= models.IntegerField(default=0)
     caption = models.TextField()
@@ -33,7 +33,7 @@ class Image(models.Model):
         return self.name
    
 
-class profile(models.Model):
+class Profile(models.Model):
     first_name = models.CharField(max_length=30, null=True)
     last_name = models.CharField(max_length =30, null=True)
     profile_image = models.ImageField(upload_to='profile/')
@@ -70,7 +70,7 @@ class Comment(models.Model):
         
 class Follows(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE,related_name='follow',null=True)
-    follower = models.ForeignKey(profile,on_delete = models.CASCADE, null = True)
+    follower = models.ForeignKey(Profile,on_delete = models.CASCADE, null = True)
 
     def save_follower(self):
         self.save

@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
 import sys
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+# import cloudinary
+# import cloudinary.uploader
+# import cloudinary.api
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'cloudinary',
+    # 'cloudinary',
 
     
 ]
@@ -134,17 +134,18 @@ MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-# adding config
-cloudinary.config( 
-  cloud_name = "dmihkyhjw", 
-  api_key = "585383889828843", 
-  api_secret = "j7PSnBq4onRs-cbF7_Yh2HEe7N4" 
-)
+# # adding config
+# cloudinary.config( 
+#   cloud_name = "dmihkyhjw", 
+#   api_key = "585383889828843", 
+#   api_secret = "j7PSnBq4onRs-cbF7_Yh2HEe7N4" 
+# )
 
 
 
 LOGOUT_REDIRECT_URL ='index'
 LOGIN_REDIRECT_URL='profile'
+# UPLOAD_REDIRECT_URL='profile'
 
 
 

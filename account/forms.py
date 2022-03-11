@@ -24,15 +24,10 @@ class LoginForm(forms.Form):
     password =forms.CharField(widget=forms.PasswordInput)
 
 
-
-
-
-
-
 class UpdateProfile(forms.ModelForm):
     bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
     class Meta:
-        model = profile
+        model = Profile
         fields = ['first_name','last_name','profile_image','bio','username']
 
 
