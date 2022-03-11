@@ -19,6 +19,15 @@ class NewUserForm(UserCreationForm):
             user.save()
         return user
 
+class LoginForm(forms.Form):
+    username =forms.CharField(max_length=50)
+    password =forms.CharField(widget=forms.PasswordInput)
+
+
+
+
+
+
 
 class UpdateProfile(forms.ModelForm):
     bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
