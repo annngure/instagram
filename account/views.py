@@ -11,8 +11,10 @@ from .models import *
 
 
 def index(request):
-
-    context={}
+    image=Image.objects.all()
+    context={
+        "image":image
+    }
     return render(request,'index.html',context)
 
 @login_required()
@@ -45,10 +47,17 @@ def update_profile(request):
     return render(request, 'update-profile.html',context)
 
 def comment(request):
+    # post = get_object_or_404(image,id=id)	
+    # current_user = request.user
+    # print(post)
+
     if request.method=='POST':
         form =CommentForm(request.POST)
 
         if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            # comment.image = post
             comment.save()
             return redirect('index')
     else:
@@ -56,7 +65,7 @@ def comment(request):
         context={
             "form":form
         }
-    return render(request,'comment.html',context)
+    return render(request,'comments.html',context)
 
 def registerView(request):
     if request.method=="POST":

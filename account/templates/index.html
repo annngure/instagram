@@ -20,24 +20,28 @@
     </nav>
 
     <p>Welcome.</p>
-    
-{% if user.is_authenticated %}
-     Hi {{ user.username }}!
-{% else %}
+
+<div class="img-fluid">
+
+</div>
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+    {% else %}
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">Log In</a>
-{% endif %}
+{% endif %}   
+<div class="row">
 
-    {% for comment in comment %}
-    <div class="row">
-        <div class="col-md-1">
-            <p style=" font-weight: bold; "><a style="color: black" href="/"> {{comment.user}}</p>
-        </div>
-        <div class="col-md-4" style="margin-left: -25px">
-            <p>{{comment.comment}}</p>
+    {%for image in image%}
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <img src="{{image.image.url}}" alt="{{image.image.url}}" class="img-fluid">
+            </div>
         </div>
     </div>
-    {% endfor %}
+    {%endfor%}
 </div>
+
 
 {% endblock %} 

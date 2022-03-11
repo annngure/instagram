@@ -35,9 +35,11 @@ class UpdateUserForm(forms.ModelForm):
         fields = ['username','email']
 
 class CommentForm(forms.ModelForm):
+    comment = forms.CharField(widget=forms.Textarea, max_length=1000)
+    
     class Meta:
         model = Comment
-        fields = ['comment,''image' ,'user']
+        fields = ['comment']
 
 
 
