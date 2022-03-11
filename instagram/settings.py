@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
 import sys
-# import cloudinary
-# import cloudinary.uploader
-# import cloudinary.api
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'cloudinary',
 
     
 ]
@@ -129,12 +130,16 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
+MEDIA_URL='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 # adding config
-# cloudinary.config( 
-#   cloud_name = "dmihkyhjw", 
-#   api_key = "585383889828843", 
-#   api_secret = "j7PSnBq4onRs-cbF7_Yh2HEe7N4" 
-# )
+cloudinary.config( 
+  cloud_name = "dmihkyhjw", 
+  api_key = "585383889828843", 
+  api_secret = "j7PSnBq4onRs-cbF7_Yh2HEe7N4" 
+)
 
 
 

@@ -1,13 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryField
 
 
 # # Create your models here.
 
 class Image(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE,null=True)
-    image = models.ImageField(upload_to='image')
+    image = CloudinaryField('image')
     name = models.CharField(max_length=60)
     likes= models.IntegerField(default=0)
     caption = models.TextField()
